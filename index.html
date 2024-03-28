@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" sizes="1024x1024" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Airline Ticket Reservation System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  </head>
+  <body>
+    <div class="toast-container"></div>
+    
+    <!-- Backdrop -->
+    <div class="backdrop"></div>
+
+    <!-- Popup container -->
+    <div class="popup-container" id="popupContainer">
+        <button>
+          <div class="popup-content">
+        </button>
+        <div class="popup-content">
+            <h2>Reservation Completed</h2>
+            <p style="margin-top: 20px;">Your reservation has been successfully completed!</p>
+            <button class="popup-button" id="printReservation" >Print Reservation</button>
+        </div>
+    </div>
+
+    <section id="middle">
+      <nav>
+        <div class="navbar">
+          <div class="logo" style="padding-top: 1.0rem; padding-bottom: 0.5rem; --tw-text-opacity: 1; color: rgb(239 68 68 / var(--tw-text-opacity));">
+            <h3>Aerolink</h3>
+            <!-- <img src="/logo.png" alt="logo" /> -->
+          </div>
+          <div class="navmenu" style="margin-top: 3px;">
+
+            <div id="navigation">
+              <button type="button" class="nav-btn" data-active="true" data-page="reserve">Book</button>
+              <button type="button" class="nav-btn" data-active="false" data-page="check">Check Reservation</button>
+              <button type="button" class="nav-btn" data-active="false" data-page="show">View Passengers</button>
+            </div>
+
+          </div>
+
+
+
+        </div>
+
+      </nav>
+    </section>
+
+    <section id="aloplane" class="blur-bottom" style="position: relative;height: 85vh; border-radius: 20px; margin-left: 50px; margin-right: 50px; background-image: url(./public/airplane.jpg); background-size: cover; background-repeat: no-repeat; background-position: center -50px;">
+      <div style="position: absolute; top: 4%; left: 10px; left: 50%; transform: translateX(-50%);">
+        <img src="./public/Aerolink.png" alt="Aerolink Airways" style="height: 130px; width: 130px; border-radius: 5px;">
+      </div>
+
+      <div style="padding: 20px; position: absolute; top: 20%; left: 50%; transform: translateX(-50%); background: rgba(255, 255, 255, 0); backdrop-filter: blur(2px); border-radius: 10px; border: rgba(255, 255, 255, 0.2);">
+        <h1 style="--tw-text-opacity:1; color: rgb(17 24 39 / var(--tw-text-opacity)); text-align: center; font-size: 2em;">Takeoff is Optional.</h1>
+        <h1 style="--tw-text-opacity:1; color: rgb(17 24 39 / var(--tw-text-opacity)); font-size: 2em;">Landing is mandatory.</h1>
+      </div>
+
+      
+
+
+      <section id="top" class="deets" style="position:absolute; left: 50%; transform: translateX(-50%); bottom:20px ; background: rgba(255, 255, 255, 0); backdrop-filter: blur(1px); border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.2);">
+        <header>
+          <div id="heading">
+            
+          </div>
+          <div id="details">
+            <!-- the flight detail is rendered here from javascript -->
+          </div>
+        </header>
+      </section>
+
+    </section>
+
+    
+
+
+    <section id="down" style="margin-top: 70px;">
+      <main id="app">
+        <!-- dynamic page is rendered here using javascript -->
+      </main>
+    </section>
+    <footer>
+      
+    </footer>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

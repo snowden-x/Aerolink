@@ -1,0 +1,591 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+  --bg-main: 255, 255, 255;
+  --bg-secondary: 59, 130, 246;
+  --bg-tertiary: 29, 78, 216;
+  --bg-card: 239, 246, 255;
+  --bg-danger: 220, 38, 38;
+  --bg-success: 76, 175, 80;
+  --tw-bg-opacity: 1;
+  
+  
+
+  --fg-main: 23, 37, 84;
+  --fg-secondary: 36, 36, 36;
+
+  --text-secondary: 245, 245, 244;
+  --text-main: 55, 65, 81;
+
+  --border-color: 229, 229, 229;
+
+  color-scheme: light dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  cursor: pointer;
+  outline: none;
+  border: none
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  width: 100%;
+  position: relative;
+  font-family: "Poppins","Inter", "Segoe UI",sans-serif;
+  min-height: 100vh;
+  color: rgba(var(--fg-main), 1);;
+  background-color: rgba(var(--bg-main), 1);;
+}
+
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  max-height: calc(100vh - 40px); 
+  overflow: hidden;
+  overflow-y: auto; /* Enable vertical scrolling if needed */
+  padding: 10px;
+}
+
+.toast {
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  color: rgba(var(--text-main), 1);
+  font-size: 16px;
+}
+.success {
+  background-color: rgba(var(--bg-success), 0.1);
+  border-left: 8px solid rgba(var(--bg-success), 1);
+}
+.error {
+  background-color: rgba(var(--bg-danger), 0.1);
+  border-left: 8px solid rgba(var(--bg-danger), 1);
+}
+
+.backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1); /* Black with opacity 0.1 */
+  backdrop-filter: blur(5px); /* Blur effect */
+  z-index: 999; /* Higher z-index than the popup */
+}
+.popup-container {
+  display: none;
+  position: fixed;
+  width: 400px;
+  height: 320px;
+  top: calc(50% - 170px);
+  left: calc(50% - 200px);
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Higher z-index than the backdrop */
+}
+.popup-content {
+  margin-top: 10px ;
+  text-align: center;
+}
+.popup-button {
+  margin-top: 80px;
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+}
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+#top{
+  position: relative;
+  width: 80%; /* Adjust to the desired width */
+  margin: 0 auto; /* Centers the element */
+  margin-top: 50px;
+  padding: 24px 0 90px 0;
+  background-color: #F3F4F6;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  font-family: 'Poppins', sans-serif;
+  color: rgba(var(--text-main), 1);
+  text-align: center;
+   /* Add a border */
+  border-radius: 20px;
+}
+
+header, nav, main{
+  width: 100%;
+  
+  
+}
+.blur-bottom::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20%; /* Adjust as needed */
+  background: linear-gradient(transparent, white);
+}
+
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  height: 70px;
+  background-color: white;
+  padding-left: 20px;
+  padding-right: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  
+ 
+}
+
+.navmenu{
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px; /* adjust this value as needed */
+}
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
+
+header h1{
+  font-size: 2.5em;
+  text-align: center;
+  color: rgba(var(--bg-card), 1);;
+}
+
+#details{
+  margin: 1em 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+}
+
+#details .detail{
+  position: relative;
+  width: 248px;
+  background-color: rgba(var(--bg-main), 1);;
+  color: rgba(var(--fg-main), 1);;
+  height: 72px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5rem; /* This is an approximation, as Tailwind's border radius sizes are based on a default configuration */
+  
+}
+
+#details .detail .detail_title{
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  font-size: 13px;
+  padding-bottom: 2px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+#details .detail .detail_content{
+  width: 100%;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+#middle{
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: rgba(var(--bg-main), 1);;
+}
+
+
+
+
+
+#navigation button{
+    padding-top: 0.5rem; /* This is an approximation, as Tailwind's spacing sizes are based on a default configuration */
+    padding-bottom: 0.5rem; /* Again, this is an approximation */
+    padding: 10px 14px;
+    font-size: 1.125rem; /* This is an approximation, as Tailwind's font sizes are based on a default configuration */
+    font-weight: 400; /* This is an approximation, as Tailwind's font weights are based on a default configuration */
+    color: black;
+    transition: all 0.2s;
+    font-family: 'Poppins', sans-serif;
+    background-color: white;
+}
+
+#navigation button[data-active="true"]{
+  padding-top: 0.5rem; /* This is an approximation, as Tailwind's spacing sizes are based on a default configuration */
+  padding-bottom: 0.5rem; /* Again, this is an approximation */
+  font-size: 1.125rem; /* This is an approximation, as Tailwind's font sizes are based on a default configuration */
+  font-weight: 600; /* This is an approximation, as Tailwind's font weights are based on a default configuration */
+  color: #4F46E5; /* This is the color for indigo-600 in the default Tailwind CSS configuration */
+  transition: all 0.2s;
+  border-bottom: 2px solid #4F46E5;
+  font-family: 'Poppins', sans-serif; 
+
+}
+#navigation button[data-active="true"]:hover {
+  opacity: 0.8;
+}
+
+@media (min-width: 1024px) {
+
+  /* lg: */
+  #navigation button[data-active="true"] {
+    border-bottom-width: 2px;
+    border-color: #4F46E5;
+    /* This is the color for indigo-600 in the default Tailwind CSS configuration */
+  }
+}
+ /*css for check.js*/
+ .check-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* This will create two equal-width columns */
+  gap: 2px; /* This will create a 20px gap between the columns */
+}
+
+.map, .checkform-section {
+  display: flex; /* This will make the direct children of .map and .checkform-section align in a flex context */
+  justify-content: center; /* This will center the children horizontally */
+  align-items: center; /* This will center the children vertically */
+  padding-top: 3rem; /* 48px */
+  padding-bottom: 3rem; /* 48px */
+  width: 75%; /* This will make the .map div the same width as the .checkform-section div */
+  height: fit-content; /* This will make the .map div the same height as the .checkform-section div */
+}
+
+.checkform-section {
+  background-color: #F3F4F6;
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1rem/* 16px */ * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem/* 16px */ * var(--tw-space-y-reverse));
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+#search-code {
+  padding: 1rem; /* 16px */
+  background-color: #F3F4F6;
+  border-radius: 0.5rem; /* This is an approximation, as Tailwind's border radius sizes are based on a default configuration */
+  font-family: 'Poppins', sans-serif;
+}
+
+#search-code:focus{
+border-color: blue;
+}
+
+#search-reservation {
+  border-radius: 0.5rem;
+  padding: 1rem; /* 16px */
+  background-color: #F3F4F6;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#search-reservation:focus{
+  border-color: blue;
+ 
+}
+
+button[type="submit"]:hover {
+  background-color: #4F46E5; /* Change this to the color you want when hovering */
+  color: white; /* Change this to the color you want for the text when hovering */
+}
+
+
+#app{
+  padding: 24px;
+  padding-bottom: 76px;
+  position: relative;
+}
+
+.app_section{
+  width: 100%;
+  margin-bottom: 48px;
+}
+
+.app_header{
+  height: 44px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: rgba(var(--text-main), 1);;
+  border-left: 3px solid #4F46E5;
+}
+
+.app_header h3{
+  font-weight: 500;
+  font-size: 22px;
+}
+
+.app_content{
+  padding: 20px;
+}
+
+.app_content p {
+  font-size: 15px;
+}
+
+
+.form-input{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 10px;
+}
+
+.form-input:focus{
+  border-color: blue;
+
+}
+.reserve-input{
+  border-radius: 0.5rem;
+  font-family: 'Poppins', sans-serif;
+}
+.reserve-input:focus {
+  border-color: blue;
+}
+
+.price-badge:empty {
+  display: none;
+}
+
+.app_content label{
+  font-size: 12px;
+}
+
+.app_content input, .app_content select{
+  width: 100%;
+  max-width: 280px;
+  height: 48px;
+  background-color: transparent;
+  outline: none;
+  border: 1px solid rgba(var(--border-color), 1);;
+  padding: 0 16px;
+  color: var(--text-main);
+  font-size: 16px;
+}
+
+.app_content__flight{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px
+}
+.app_content__passenger{
+  width: 100%;
+  border-bottom: 1px solid rgba(var(--border-color), 1);;
+  padding-bottom: 20px;
+}
+
+.app_content__passenger .passenger-header{
+  width: 100%;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.app_content__passenger .passenger-header h4{
+  font-weight: 600;
+  font-size: 24px;
+  color: rgba(var(--text-main), 1);;
+  opacity: 0.4;
+}
+
+.passenger-controls {
+  display: flex;
+  gap: 20px;
+}
+
+.passenger-controls button {
+  padding: 0;
+  background-color: transparent;
+}
+
+.passenger-controls button i{
+  color: rgba(var(--bg-secondary), 1);;
+  font-size: 32px;
+}
+
+
+.add-passenger, .remove-passenger{
+  height: 40px;
+  padding: 14px;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  background-color: rgba(var(--bg-tertiary), 0.1);
+  color: rgba(var(--bg-tertiary), 0.8);
+  transition-property: all;
+  transition-duration: 300;
+  
+}
+
+.remove-passenger{
+  background-color: rgba(var(--bg-danger), 0.1);
+  color: rgba(var(--bg-danger), 0.8);
+}
+
+.remove-passenger:not(:disabled):hover{
+  color: rgba(var(--bg-danger), 1);
+  border-color: rgba(var(--bg-danger), 1);
+}
+
+.add-passenger:not(:disabled):hover{
+  color: rgba(var(--bg-tertiary), 1);
+  border-color: rgba(var(--bg-tertiary), 1);
+}
+
+.passenger-form, .app_content__contact, .app_content__payment{
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px 14px;
+}
+
+.app_button #make-reservation{
+  height: 44px;
+  font-size: 16px;
+  padding: 0 15px;
+  background-color: #4F46E5;
+  color: rgba(var(--text-secondary), 1);;
+  border-radius: 4px;
+}
+
+
+
+.app_content__check form{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.app_content__check form button{
+  height: 48px;
+  font-size: 18px;
+  background-color: rgba(var(--bg-tertiary), 1);;
+  color: rgba(var(--text-secondary), 1);;
+  padding: 0 28px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Table header styles */
+th {
+  background-color:#4F46E5;
+  color: rgba(var(--text-secondary), 1);
+  padding: 16px 10px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+/* Alternating row styles */
+tr:nth-child(even) {
+  background-color: rgba(var(--bg-card), 1);;
+}
+
+/* Cell padding and text styles */
+td {
+  padding: 16px 8px;
+}
+
+td button{
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 4px;
+  color: rgba(var(--text-secondary), 1);;
+}
+
+td button.cancel{
+  background-color: rgba(var(--bg-danger), 1);;
+}
+
+td button.print{
+  background-color: rgba(var(--bg-tertiary), 1);;
+}
+
+.error_container{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+  padding: 14px;
+}
+
+.error_container img{
+  width: 100%;
+  max-width: 320px;
+}
+
+.error_container .error_text{
+  font-size: 20px;
+  font-weight: 500;
+}
+
+footer{
+  position: absolute;
+  width: 100%;
+  height: 56px;
+  background-color: rgba(var(--bg-main), 1);;
+  left: 0;
+  bottom:0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer button {
+  background-color: transparent;
+  color: rgba(var(--text-main), 1);;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+  }
+}
